@@ -1,0 +1,96 @@
+@import "responsive";
+
+footer {
+  .footer-content {
+    padding: 60px 40px 20px 40px;
+    background-size: 100% auto !important;
+    background: #d6d6d6 url(https://www.nhgazette.com/wp-content/uploads/2020/06/tide-web.png) repeat-x top;
+
+    .footer-content-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2em;
+      margin: auto;
+      max-width: 985px;
+
+      .widget {
+        flex: 1;
+        flex-basis: calc(50% - 2em);
+
+        @include desktop {
+          flex-basis: 0;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+
+        h2 {
+          text-align: left;
+          color: #000;
+          margin-bottom: 25px;
+          font-size: 20px;
+          line-height: 1.5;
+          font-weight: 400;
+        }
+
+        a, p {
+          font-size: 17px;
+        }
+
+        i {
+          margin-top: 0.5em;
+          font-size: 1.5em;
+        }
+
+        input {
+          border: none;
+          margin-bottom: 1em;
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  .bottom-footer {
+    background: #222;
+    color: white;
+
+    div.copyright-bar {
+      margin: auto;
+      max-width: 985px;
+      text-align: center;
+      padding: 20px;
+      font-size: 15px;
+    }
+  }
+}
+
+.scroll-to-top {
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 3px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  line-height: 40px;
+  width: 40px;
+  text-align: center;
+  z-index: 10;
+  transition: opacity 300ms ease-in-out;
+
+  opacity: 0;
+  visibility: hidden;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+}

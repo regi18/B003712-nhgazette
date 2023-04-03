@@ -15,13 +15,52 @@ h1, h2, h3 {
   margin: 0;
 }
 
+h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 30px !important;
+  }
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+
 p {
   margin: 0;
+}
+
+img {
+  max-width: 100%;
 }
 
 a, a:hover, a:focus, a:active {
   text-decoration: none;
   color: inherit;
+}
+
+.disclaimer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99999999999999;
+  background: white;
+  padding: 5em;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  .disclaimer {
+    padding: 2em;
+  }
 }
 
 header.main-header {
@@ -37,7 +76,6 @@ header.main-header .header-wrapper {
 header.main-header .header-wrapper h1 {
   font-size: 55px;
   margin: 0;
-  line-height: 1.2em;
   word-wrap: break-word;
   font-weight: 700;
   color: #222222;
@@ -63,17 +101,22 @@ header.main-header .header-wrapper p {
   color: #fff;
 }
 
-section.without-image {
+section.without-image, section > div.spacing-wrapper {
   margin: 0 auto;
   padding: 40px 35px;
   max-width: 960px;
 }
-section.without-image h2 {
+section.without-image h2, section > div.spacing-wrapper h2 {
   font-size: 30px;
   line-height: 1.2em;
   font-weight: 300;
 }
-section.without-image > h2 {
+@media (max-width: 768px) {
+  section.without-image h2, section > div.spacing-wrapper h2 {
+    font-size: 25px;
+  }
+}
+section.without-image > h2, section > div.spacing-wrapper > h2 {
   text-align: center;
   margin-bottom: 20px;
 }

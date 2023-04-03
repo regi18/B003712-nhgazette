@@ -14,6 +14,8 @@
   padding-left: 0;
   font-size: 1em;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .top-nav .top-nav-wrapper ul.menu ul.sub-menu {
   list-style: none;
@@ -50,6 +52,7 @@
   line-height: 60px;
   font-weight: 400;
   font-size: 15px;
+  white-space: nowrap;
   color: #222222;
 }
 .top-nav .top-nav-wrapper ul.menu li.menu-item a:hover {
@@ -71,6 +74,38 @@
   pointer-events: auto;
   height: auto;
   overflow: visible;
+}
+@media (max-width: 768px) {
+  .top-nav .mobile-top-nav {
+    display: flex;
+    justify-content: space-between;
+    color: #222222;
+    padding: 0 20px;
+    line-height: 60px;
+    font-weight: 400;
+    font-size: 15px;
+  }
+  .top-nav .mobile-top-nav i.hamburger {
+    margin-right: 0.4em;
+  }
+  .top-nav .top-nav-wrapper {
+    justify-content: flex-start;
+  }
+  .top-nav .top-nav-wrapper:not(.is-open-mobile) {
+    display: none;
+  }
+  .top-nav .top-nav-wrapper ul.menu {
+    flex-direction: column;
+    flex: 1;
+  }
+  .top-nav .top-nav-wrapper ul.menu .menu-item.search-bar {
+    display: none;
+  }
+  .top-nav .top-nav-wrapper ul.menu li.menu-item.with-sub-menu a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 /*# sourceMappingURL=top-navbar.css.map */

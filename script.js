@@ -3,6 +3,9 @@ const {createApp} = Vue
 createApp({
     data() {
         return {
+            isMobileMenuOpen: false,
+            isMobileSecondMenuOpen: false,
+            isDisclaimerOpen: true,
             // MAX 4 ARTICLES
             articles: [
                 {
@@ -29,5 +32,26 @@ createApp({
                 }
             ],
         }
-    }
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    methods: {
+        handleScroll() {
+            const minScroll = 280;
+            const btn = this.$refs.scrollToTopBtn;
+            if (document.body.scrollTop > minScroll || document.documentElement.scrollTop > minScroll) {
+                btn.classList.add('show');
+            }
+            else {
+                btn.classList.remove('show');
+            }
+        },
+        scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    },
 }).mount('#app')

@@ -1,3 +1,5 @@
+@import "responsive";
+
 .top-nav {
   width: 100%;
   background: #fff;
@@ -14,6 +16,8 @@
       padding-left: 0;
       font-size: 1em;
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
 
       ul.sub-menu {
         list-style: none;
@@ -55,6 +59,7 @@
           line-height: 60px;
           font-weight: 400;
           font-size: 15px;
+          white-space: nowrap;
 
           color: #222222;
 
@@ -83,6 +88,45 @@
             height: auto;
             overflow: visible;
           }
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    .mobile-top-nav {
+      display: flex;
+      justify-content: space-between;
+      color: #222222;
+      padding: 0 20px;
+      line-height: 60px;
+      font-weight: 400;
+      font-size: 15px;
+
+      i.hamburger {
+        margin-right: 0.4em;
+      }
+    }
+
+    .top-nav-wrapper {
+      &:not(.is-open-mobile) {
+          display: none;
+      }
+
+      justify-content: flex-start;
+
+      ul.menu {
+        flex-direction: column;
+        flex: 1;
+
+        .menu-item.search-bar {
+          display: none;
+        }
+
+        li.menu-item.with-sub-menu a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
         }
       }
     }

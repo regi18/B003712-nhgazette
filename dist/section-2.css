@@ -18,7 +18,7 @@ section.section-2 .article-wrapper article:nth-child(3) {
 section.section-2 .article-wrapper article:nth-child(4) {
   grid-column: span 5;
 }
-@media (min-width: 769px) and (max-width: 1025px) {
+@media (min-width: 769px) and (max-width: 1024px) {
   section.section-2 .article-wrapper article:nth-child(1) {
     grid-column: span 5;
   }
@@ -54,10 +54,11 @@ section.section-2 .article-wrapper article header h2 {
 }
 section.section-2 .article-wrapper article header .description {
   font-size: 65%;
-  color: #3f3f3f;
+  color: rgba(0, 0, 0, 0.5);
 }
 section.section-2 .article-wrapper article figure {
   margin: 0 0 0.7em;
+  text-align: center;
 }
 section.section-2 .article-wrapper article figure img {
   mix-blend-mode: darken;

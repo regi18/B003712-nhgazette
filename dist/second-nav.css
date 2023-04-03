@@ -13,6 +13,8 @@
   padding-left: 0;
   font-size: 1em;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .second-nav .second-nav-wrapper ul.secondary-menu li.menu-item a {
   font-family: "Playfair Display", serif;
@@ -23,10 +25,36 @@
   padding-left: 18px;
   padding-right: 18px;
   line-height: 45px;
+  white-space: nowrap;
 }
 .second-nav .second-nav-wrapper ul.secondary-menu li.menu-item a:hover {
   color: #ffffff;
   background-color: #303030;
+}
+@media (max-width: 768px) {
+  .second-nav {
+    line-height: 45px;
+  }
+  .second-nav .second-nav-wrapper {
+    flex-direction: column;
+  }
+  .second-nav .second-nav-wrapper .menu-item a {
+    padding: 0 18px;
+  }
+  .second-nav .mobile-second-nav {
+    font-size: 13px;
+    padding: 0 18px;
+    text-align: center;
+  }
+  .second-nav .mobile-second-nav i.hamburger {
+    margin-right: 0.4em;
+  }
+  .second-nav .secondary-menu {
+    flex-direction: column;
+  }
+  .second-nav .secondary-menu:not(.is-open-mobile) {
+    display: none !important;
+  }
 }
 
 /*# sourceMappingURL=second-nav.css.map */

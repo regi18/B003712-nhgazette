@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="dist/style.css">
     <link rel="stylesheet" href="dist/top-navbar.css">
     <link rel="stylesheet" href="dist/second-nav.css">
+    <link rel="stylesheet" href="dist/section.css">
     <link rel="stylesheet" href="dist/section-1.css">
     <link rel="stylesheet" href="dist/section-2.css">
     <link rel="stylesheet" href="dist/section-3.css">
-    <link rel="stylesheet" href="dist/section-4.css">
+    <link rel="stylesheet" href="dist/section-5.css">
+    <link rel="stylesheet" href="dist/section-7.css">
+    <link rel="stylesheet" href="dist/footer.css">
 
     <meta
             name="viewport"
@@ -32,148 +35,357 @@
 <body>
 <div id="app">
 
-    <nav class="top-nav">
-        <div class="top-nav-wrapper">
-            <ul class="menu">
-                <li class="menu-item">
-                    <a href="">Subscribe/Donate</a>
-                </li>
-                <li class="menu-item">
-                    <a href="">About the Gazette</a>
-                </li>
-                <li class="menu-item">
-                    <a href="">Advertising</a>
-                </li>
-                <li class="menu-item">
-                    <a href="">Masthead</a>
-                </li>
-                <li class="menu-item with-sub-menu">
-                    <a href="">
-                        The Bush/Nazi Stories <i class="fas fa-angle-down arrow-down"></i>
-                    </a>
+    <div class="disclaimer" v-if="isDisclaimerOpen">
+        <p>
+            Hello,<br>
+            This is a reproduction of the website for The New Hampshire Gazette.<br>
+            <b>It is intended as an exercise for my university in recreating a website from scratch.<br>
+                The content and images are not my own, and are used for educational purposes only</b>, they are the
+            property of
+            their respective owners.<br>
+            The original website can be found at
+            <a href="https://www.nhgazette.com/">nhgazette.com</a>.
+            <br>
+            <br>
+            <a class="button" @click="isDisclaimerOpen = false">I Understand</a>
+        </p>
+    </div>
 
-                    <ul class="sub-menu">
-                        <li class="sub-menu-item">
-                            <a href="">Bush/Nazi Link Confirmed</a>
-                        </li>
-                        <li class="sub-menu-item">
-                            <a href="">Bush/Nazi Link Continued</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="menu-item search-bar">
-                    <a>
+    <template v-if="!isDisclaimerOpen">
+        <nav class="top-nav">
+            <div class="mobile-top-nav">
+                <span @click="isMobileMenuOpen = !isMobileMenuOpen">
+                    <i class="fas hamburger" :class="isMobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+                    Menu
+                </span>
+
+                <span class="search-bar">
+                    <a aria-label="Open Search Bar">
                         <i class="fas fa-magnifying-glass"></i>
                     </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <header class="main-header">
-        <div class="header-wrapper">
-            <h1>
-                <a href="https://www.nhgazette.com/">The New Hampshire Gazette</a>
-            </h1>
-            <p>
-                The Nation’s Oldest Newspaper™ • Editor: Steven Fowle • Founded 1756 by Daniel Fowle
-            </p>
-        </div>
-    </header>
-
-    <nav class="second-nav">
-        <div class="second-nav-wrapper">
-            <ul class="secondary-menu">
-                <li class="menu-item">
-                    <a>The Fortnightly Rant</a>
-                </li>
-                <li class="menu-item">
-                    <a>The Alleged News®</a>
-                </li>
-                <li class="menu-item">
-                    <a>Mash Notes, Hate Mail &amp; Other Correspondence</a>
-                </li>
-                <li class="menu-item">
-                    <a>The Northcountry Chronicle</a>
-                </li>
-                <li class="menu-item">
-                    <a>Page 8</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-    <main>
-        <section class="section-1">
-            <div class="wrapper">
-                <h3>The Nation’s Oldest Newspaper.</h3>
-                <h1>A svelte, one-ounce packet<br> of unfettered, non-fiction news.</h1>
-                <p>Published 26 times a year on alternating Fridays.<br>
-                    Distributed for free by people just like you.<br>
-                    Help us cover the first district, the second and beyond.
-                </p>
-                <p>
-                    <a class="button">Learn More</a>
-                </p>
+                </span>
             </div>
-        </section>
 
-        <section class="section-2 without-image">
-            <h2>Read the Latest Paper Online<br>–=≈=–</h2>
-
-            <div class="article-wrapper">
-                <article v-for="a of articles">
-                    <header>
-                        <h2>
-                            <a>{{ a.title }}</a>
-                        </h2>
-                        <div class="description">{{ a.description }}</div>
-                    </header>
-
-                    <figure v-if="!!a.imgUrl"><img :src="a.imgUrl" :alt="a.title"></figure>
-
-                    <p>{{ a.p }}</p>
-
-                    <div class="actions">
-                        <a class="button">
-                            Read More
+            <div class="top-nav-wrapper" :class="{ 'is-open-mobile': isMobileMenuOpen }">
+                <ul class="menu">
+                    <li class="menu-item">
+                        <a href="">Subscribe/Donate</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">About the Gazette</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">Advertising</a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="">Masthead</a>
+                    </li>
+                    <li class="menu-item with-sub-menu">
+                        <a href="">
+                            The Bush/Nazi Stories <i class="fas fa-angle-down arrow-down"></i>
                         </a>
 
-                        <div class="socials">
-                            <i class="fa-brands fa-twitter"></i>
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </div>
-                    </div>
-                </article>
+                        <ul class="sub-menu">
+                            <li class="sub-menu-item">
+                                <a href="">Bush/Nazi Link Confirmed</a>
+                            </li>
+                            <li class="sub-menu-item">
+                                <a href="">Bush/Nazi Link Continued</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="menu-item search-bar">
+                        <a>
+                            <i class="fas fa-magnifying-glass"></i>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </section>
+        </nav>
 
-        <section class="section-3 without-image">
-            <h2>Download the Latest Paper</h2>
-            <p class="divider">–=≈=–</p>
-
-            <div class="download-wrapper">
-                <h2>
-                    <a href="">Volume 267, No. 14; March 24, 2023</a>
-                </h2>
-                <div class="content">
-                    <p><strong>March 24, 2023 —</strong> To download this issue of our paper, just click on the image at right.</p>
-                    <img src="http://www.nhgazette.com/wp-content/uploads/2023/03/267_14.png" alt="Gazette Front Page">
-                </div>
-            </div>
-        </section>
-
-        <section class="section-4">
-            <div class="wrapper">
-                <h2>Politics on paper since October 7, 1756</h2>
+        <header class="main-header">
+            <div class="header-wrapper">
+                <h1>
+                    <a href="https://www.nhgazette.com/">The New Hampshire Gazette</a>
+                </h1>
                 <p>
-                    A newspaper, a third cousin five times removed,<br>
-                    a freelance insurgency. <a href="">Watch the video</a>.
+                    The Nation’s Oldest Newspaper™ • Editor: Steven Fowle • Founded 1756 by Daniel Fowle
                 </p>
             </div>
-        </section>
-    </main>
+        </header>
 
+        <nav class="second-nav">
+            <div class="second-nav-wrapper">
+                <div class="mobile-second-nav">
+                    <span @click="isMobileSecondMenuOpen = !isMobileSecondMenuOpen ">
+                        <i class="fas hamburger" :class="isMobileSecondMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+                        Departments
+                    </span>
+                </div>
+
+                <ul class="secondary-menu" :class="{ 'is-open-mobile': isMobileSecondMenuOpen }">
+                    <li class="menu-item">
+                        <a>The Fortnightly Rant</a>
+                    </li>
+                    <li class="menu-item">
+                        <a>The Alleged News®</a>
+                    </li>
+                    <li class="menu-item">
+                        <a>Mash Notes, Hate Mail &amp; Other Correspondence</a>
+                    </li>
+                    <li class="menu-item">
+                        <a>The Northcountry Chronicle</a>
+                    </li>
+                    <li class="menu-item">
+                        <a>Page 8</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main>
+            <section class="section-1">
+                <div class="wrapper">
+                    <h3>The Nation’s Oldest Newspaper.</h3>
+                    <h1>A svelte, one-ounce packet<br> of unfettered, non-fiction news.</h1>
+                    <p>Published 26 times a year on alternating Fridays.<br>
+                        Distributed for free by people just like you.<br>
+                        Help us cover the first district, the second and beyond.
+                    </p>
+                    <p>
+                        <a class="button">Learn More</a>
+                    </p>
+                </div>
+            </section>
+
+            <section class="section-2 without-image">
+                <h2>Read the Latest Paper Online<br>–=≈=–</h2>
+
+                <div class="article-wrapper">
+                    <article v-for="a of articles">
+                        <header>
+                            <h2>
+                                <a>{{ a.title }}</a>
+                            </h2>
+                            <div class="description">{{ a.description }}</div>
+                        </header>
+
+                        <figure v-if="!!a.imgUrl"><img :src="a.imgUrl" :alt="a.title"></figure>
+
+                        <p>{{ a.p }}</p>
+
+                        <div class="actions">
+                            <a class="button">
+                                Read More
+                            </a>
+
+                            <div class="socials">
+                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section-3 without-image">
+                <h2>Download the Latest Paper</h2>
+                <p class="divider">–=≈=–</p>
+
+                <div class="download-wrapper">
+                    <h2>
+                        <a href="">Volume 267, No. 14; March 24, 2023</a>
+                    </h2>
+                    <div class="content">
+                        <p><strong>March 24, 2023 —</strong> To download this issue of our paper, just click on the
+                            image at
+                            right.</p>
+                        <img
+                                src="http://www.nhgazette.com/wp-content/uploads/2023/03/267_14.png"
+                                alt="Gazette Front Page"
+                        >
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-4 black-bar-section">
+                <div class="wrapper">
+                    <h2>Politics on paper since October 7, 1756</h2>
+                    <p>
+                        A newspaper, a third cousin five times removed,<br>
+                        a freelance insurgency.
+                        <a href="">Watch the video</a>.
+                    </p>
+                </div>
+            </section>
+
+            <section class="section-5">
+                <div class="spacing-wrapper">
+                    <h3>Political Cartoons.</h3>
+                    <h1>Mike Dater’s Corner</h1>
+                    <p>The New Hampshire Gazette’s resident starving artist. Over 20 years of political satire, some
+                        whimsical and some occasionally irreverent.</p>
+                    <a href="" class="button">Visit the Gallery</a>
+                    <img
+                            src="https://www.nhgazette.com/wp-content/uploads/2020/04/mike-dater-frankenmitch.jpg"
+                            alt="cartoon"
+                    >
+                </div>
+            </section>
+
+            <section class="section-6 black-bar-section">
+                <div class="wrapper" style="background-color: #222">
+                    <p>
+                        “Thanks again, as always, for making the now really bad news somewhat
+                        easier to tolerate. The truth, which is now seldom spoken, and never spoken by our nation’s
+                        “Liar
+                        in Chief,” just keeps getting worse and worse. I am thankful for our still (for now, anyway)
+                        free
+                        press and late night television comedians’ rants posted on Youtube about the state of our
+                        country.”
+                    </p>
+                    <p>— E.S., Dover, N.H.</p>
+                </div>
+            </section>
+
+            <section class="section-7 without-image">
+                <h2>
+                    Admiral Fowle’s Piscataqua River Tidal Guide<br>
+                    (Not for Navigational Purposes)
+                </h2>
+
+                <p class="subtitle">
+                    Portsmouth, arguably the first town in this country not founded by religious extremists, is bounded
+                    on
+                    the north and east by the Piscataqua River, the second, third, or fourth fastest-flowing navigable
+                    river
+                    in the country…
+                    <a href="https://www.nhgazette.com/page-eight/">read more</a>.
+
+                    <div style="background: red">TODO CAROUSEL</div>
+                </p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-content-wrapper">
+                    <div class="widget">
+                        <h2>Contributors</h2>
+                        <ul>
+                            <li>
+                                <a
+                                        title="The New Hampshire Gazette’s Starving Artiste (Last updated December 31, 1969 6:00 pm)"
+                                        href="http://mikedater.com/"
+                                        target="_blank"
+                                >Mike Dater
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://wdehrhart.com/">W.D. Ehrhart</a>
+                            </li>
+                            <li>
+                                <a
+                                        title=" (Last updated December 31, 1969 6:00 pm)"
+                                        href="http://jimhightower.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                >Jim Hightower
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://jeanstimmell.blogspot.com/">Jean Stimmell</a>
+                            </li>
+                        </ul>
+
+                        <h2>Links</h2>
+                        <ul id="menu-links-past-site" class="menu">
+                            <li
+                                    id="menu-item-6796"
+                                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6796"
+                            >
+                                <a href="https://www.nhgazette.com/locals/">Locals</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/news/">News</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/papers/">Papers</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/politics/">Politics</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/veterans/">Veterans</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/veterans-organizations/">Veterans’ Organizations</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h2>Departments</h2>
+                        <ul id="menu-paper-sidebar" class="menu">
+                            <li>
+                                <a href="https://www.nhgazette.com/category/fortnightly-rant/">The Fortnightly Rant</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/category/the-alleged-news/">The Alleged News®</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/category/mash-notes-hate-mail-other-correspondence/">
+                                    Mash
+                                    Notes, Hate Mail &amp; Other Correspondence
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/category/the-northcountry-chronicle/">The
+                                    Northcountry
+                                    Chronicle
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/category/page-eight/">Page 8</a>
+                            </li>
+                            <li>
+                                <a href="https://www.nhgazette.com/category/digital-issue/">Digital Issues (PDFs)</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="widget">
+                        <h2>Search the archives</h2>
+                        <input type="search" placeholder="Search …" title="Search for:">
+
+                        <h2>People Powered Press</h2>
+                        <p>A contribution of any size helps our efforts and our future.</p>
+                    </div>
+
+                    <div class="widget">
+                        <h2>Mailing Information</h2>
+                        <p>The New Hampshire Gazette<br>
+                            PO Box 756<br>
+                            Portsmouth, NH 03802</p>
+                        <i class="fa-brands fa-square-twitter"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-footer">
+                <div class="copyright-bar">
+                    This website is an exercise for a university exam, it is not intended to simulate or copy the real
+                    website
+                    in any way.<br>
+                    The copyright of the content belongs to the original website (The New Hampshire Gazette).
+                </div>
+            </div>
+        </footer>
+
+        <div class="scroll-to-top" @click="scrollToTop()" ref="scrollToTopBtn">
+            <i class="fa-solid fa-angle-up"></i>
+        </div>
+    </template>
 </div>
 </body>
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>

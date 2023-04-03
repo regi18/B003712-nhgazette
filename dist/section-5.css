@@ -1,0 +1,12 @@
+section.section-5 {
+  text-align: center;
+  background: #fff;
+}
+section.section-5 p, section.section-5 a.button {
+  margin-bottom: 0.8em;
+}
+section.section-5 h1 {
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=section-5.css.map */
