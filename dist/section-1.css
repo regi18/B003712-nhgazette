@@ -1,0 +1,41 @@
+section.section-1 {
+  border-bottom: 20px solid #303030;
+}
+section.section-1 .wrapper {
+  padding: 55px 35px;
+  background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.05), rgba(51, 51, 51, 0.05)), url(https://www.nhgazette.com/wp-content/uploads/2020/04/nhgazette-hero.jpg);
+  background-size: cover;
+}
+section.section-1 .wrapper h3 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+  font-weight: 400;
+}
+section.section-1 .wrapper h1 {
+  font-weight: bold;
+  font-size: 40px;
+  margin-bottom: 20px;
+  line-height: 1.2em;
+}
+section.section-1 .wrapper p {
+  margin-bottom: 0.8em;
+}
+section.section-1 .wrapper p:last-child {
+  margin-bottom: 0;
+}
+section.section-1 .wrapper .button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 15px;
+  border: 2px solid #222;
+  color: #222;
+  font-size: 0.8em;
+  transition: 100ms ease-in-out;
+}
+section.section-1 .wrapper .button:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+/*# sourceMappingURL=section-1.css.map */

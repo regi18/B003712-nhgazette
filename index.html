@@ -7,10 +7,13 @@
     <!-- STYLES -->
     <link rel="stylesheet" href="dist/style.css">
     <link rel="stylesheet" href="dist/top-navbar.css">
+    <link rel="stylesheet" href="dist/second-nav.css">
+    <link rel="stylesheet" href="dist/section-1.css">
+    <link rel="stylesheet" href="dist/section-2.css">
 
     <meta
-        name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     >
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -18,47 +21,127 @@
     <!------ FONTS ------>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"></head>
-    <script src="./dist/font-awesome.js" crossorigin="anonymous"></script>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet"
+    >
+</head>
+<script src="./dist/font-awesome.js" crossorigin="anonymous"></script>
 <body>
+<div id="app">
 
-<nav class="top-nav">
-    <div class="top-nav-wrapper">
-        <ul class="menu">
-            <li class="menu-item">
-                <a href="">Subscribe/Donate</a>
-            </li>
-            <li class="menu-item">
-                <a href="">About the Gazette</a>
-            </li>
-            <li class="menu-item">
-                <a href="">Advertising</a>
-            </li>
-            <li class="menu-item">
-                <a href="">Masthead</a>
-            </li>
-            <li class="menu-item with-sub-menu">
-                <a href="">
-                    The Bush/Nazi Stories <i class="fas fa-angle-down arrow-down"></i>
+    <nav class="top-nav">
+        <div class="top-nav-wrapper">
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="">Subscribe/Donate</a>
+                </li>
+                <li class="menu-item">
+                    <a href="">About the Gazette</a>
+                </li>
+                <li class="menu-item">
+                    <a href="">Advertising</a>
+                </li>
+                <li class="menu-item">
+                    <a href="">Masthead</a>
+                </li>
+                <li class="menu-item with-sub-menu">
+                    <a href="">
+                        The Bush/Nazi Stories <i class="fas fa-angle-down arrow-down"></i>
+                    </a>
+
+                    <ul class="sub-menu">
+                        <li class="sub-menu-item">
+                            <a href="">Bush/Nazi Link Confirmed</a>
+                        </li>
+                        <li class="sub-menu-item">
+                            <a href="">Bush/Nazi Link Continued</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item search-bar">
+                    <a>
+                        <i class="fas fa-magnifying-glass"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <div class="header-wrapper">
+            <h1>
+                <a href="https://www.nhgazette.com/">The New Hampshire Gazette</a>
+            </h1>
+            <p>
+                The Nation’s Oldest Newspaper™ • Editor: Steven Fowle • Founded 1756 by Daniel Fowle
+            </p>
+        </div>
+    </header>
+
+    <nav class="second-nav">
+        <div class="second-nav-wrapper">
+            <ul class="secondary-menu">
+                <li class="menu-item">
+                    <a>The fortnightly rant</a>
+                </li>
+                <li class="menu-item">
+                    <a>The Alleged News®</a>
+                </li>
+                <li class="menu-item">
+                    <a>Mash Notes, Hate Mail &amp; Other Correspondence</a>
+                </li>
+                <li class="menu-item">
+                    <a>The Northcountry Chronicle</a>
+                </li>
+                <li class="menu-item">
+                    <a>Page 8</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section-1">
+            <div class="wrapper">
+                <h3>The Nation’s Oldest Newspaper.</h3>
+                <h1>A svelte, one-ounce packet<br> of unfettered, non-fiction news.</h1>
+                <p>Published 26 times a year on alternating Fridays.<br>
+                    Distributed for free by people just like you.<br>
+                    Help us cover the first district, the second and beyond.
+                </p>
+                <p>
+                    <a class="button">Learn More</a>
+                </p>
+            </div>
+        </section>
+
+        <section class="section-2">
+            <h2>Read the Latest Paper Online<br>–=≈=–</h2>
+        </section>
+
+        <section>
+            <article v-for="a of articles">
+                <header>
+                    <h2>
+                        <a>{{ a.title }}</a>
+                    </h2>
+                    <div class="description">{{ a.description }}</div>
+                </header>
+
+                <figure v-if="!!a.imgUrl"><img :src="a.imgUrl" :alt="a.title"></figure>
+
+                <p>{{ a.p }}</p>
+
+                <a class="button">
+                    Read More
                 </a>
+            </article>
+        </section>
+    </main>
 
-                <ul class="sub-menu">
-                    <li class="sub-menu-item">
-                        <a href="">Bush/Nazi Link Confirmed</a>
-                    </li>
-                    <li class="sub-menu-item">
-                        <a href="">Bush/Nazi Link Continued</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu-item search-bar">
-                <a>
-                    <i class="fas fa-magnifying-glass"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
+</div>
 </body>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="script.js"></script>
 </html>
