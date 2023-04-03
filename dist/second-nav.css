@@ -31,6 +31,9 @@
   color: #ffffff;
   background-color: #303030;
 }
+.second-nav .mobile-second-nav {
+  display: none;
+}
 @media (max-width: 768px) {
   .second-nav {
     line-height: 45px;
@@ -42,6 +45,7 @@
     padding: 0 18px;
   }
   .second-nav .mobile-second-nav {
+    display: block;
     font-size: 13px;
     padding: 0 18px;
     text-align: center;

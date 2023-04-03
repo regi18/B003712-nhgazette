@@ -60,6 +60,12 @@ a, a:hover, a:focus, a:active {
 @media (max-width: 768px) {
   .disclaimer {
     padding: 2em;
+    font-size: 15px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .disclaimer {
+    font-size: 18px;
   }
 }
 

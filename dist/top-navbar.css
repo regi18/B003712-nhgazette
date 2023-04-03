@@ -75,6 +75,9 @@
   height: auto;
   overflow: visible;
 }
+.top-nav .mobile-top-nav {
+  display: none;
+}
 @media (max-width: 768px) {
   .top-nav .mobile-top-nav {
     display: flex;

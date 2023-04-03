@@ -39,6 +39,10 @@
     }
   }
 
+  .mobile-second-nav {
+    display: none;
+  }
+
   @include mobile {
     line-height: 45px;
 
@@ -51,6 +55,7 @@
     }
 
     .mobile-second-nav {
+      display: block;
       font-size: 13px;
       padding: 0 18px;
       text-align: center;

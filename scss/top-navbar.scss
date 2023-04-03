@@ -93,6 +93,10 @@
     }
   }
 
+  .mobile-top-nav {
+    display: none;
+  }
+
   @include mobile {
     .mobile-top-nav {
       display: flex;
