@@ -19,23 +19,11 @@ section.section-1 .wrapper h1 {
   line-height: 1.2em;
 }
 section.section-1 .wrapper p {
+  text-align: center;
   margin-bottom: 0.8em;
 }
 section.section-1 .wrapper p:last-child {
   margin-bottom: 0;
-}
-section.section-1 .wrapper .button {
-  cursor: pointer;
-  display: inline-block;
-  padding: 8px 15px;
-  border: 2px solid #222;
-  color: #222;
-  font-size: 0.8em;
-  transition: 100ms ease-in-out;
-}
-section.section-1 .wrapper .button:hover {
-  background-color: #222;
-  color: #fff;
 }
 
 /*# sourceMappingURL=section-1.css.map */

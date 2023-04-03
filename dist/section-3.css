@@ -1,0 +1,15 @@
+section.section-3 p.divider {
+  text-align: center;
+}
+section.section-3 .download-wrapper h2 {
+  text-align: left;
+  margin-bottom: 1em;
+}
+section.section-3 .download-wrapper .content {
+  display: flex;
+}
+section.section-3 .download-wrapper .content p {
+  font-size: 80%;
+}
+
+/*# sourceMappingURL=section-3.css.map */

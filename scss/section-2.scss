@@ -1,9 +1,71 @@
+@import "responsive";
+
+@mixin articleLayout($sizes) {
+  @for $i from 1 through length($sizes) {
+    &:nth-child(#{$i}) {
+      grid-column: span nth($sizes, $i);
+    }
+  }
+}
+
+// -------------------
+
 section.section-2 {
-  h2 {
-    text-align: center;
-    font-size: 30px;
-    margin-bottom: 20px;
-    line-height: 1.2em;
-    font-weight: 300;
+  .article-wrapper {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 20px;
+
+    article {
+      margin: 1.5em 0;
+
+      @include articleLayout((7, 3, 5, 5));
+
+      @include tablet {
+        @include articleLayout((5, 5, 5, 5));
+      }
+
+      @include mobile {
+        @include articleLayout((10, 10, 10, 10));
+      }
+
+      header {
+        margin-bottom: 1em;
+
+        h2 {
+          text-align: left;
+        }
+
+        .description {
+          font-size: 65%;
+          color: #3f3f3f;
+        }
+      }
+
+      figure {
+        margin: 0 0 0.7em;
+
+        img {
+          mix-blend-mode: darken;
+          max-width: 100%;
+        }
+      }
+
+      p {
+        font-size: 65%;
+        margin-bottom: 1em;
+      }
+
+      .actions {
+        display: flex;
+        justify-content: space-between;
+
+        .socials i {
+          color: #737373;
+          margin-right: 0.6em;
+          font-size: 0.6em;
+        }
+      }
+    }
   }
 }

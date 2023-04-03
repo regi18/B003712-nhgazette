@@ -1,9 +1,80 @@
-section.section-2 h2 {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 20px;
-  line-height: 1.2em;
-  font-weight: 300;
+section.section-2 .article-wrapper {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 20px;
+}
+section.section-2 .article-wrapper article {
+  margin: 1.5em 0;
+}
+section.section-2 .article-wrapper article:nth-child(1) {
+  grid-column: span 7;
+}
+section.section-2 .article-wrapper article:nth-child(2) {
+  grid-column: span 3;
+}
+section.section-2 .article-wrapper article:nth-child(3) {
+  grid-column: span 5;
+}
+section.section-2 .article-wrapper article:nth-child(4) {
+  grid-column: span 5;
+}
+@media (min-width: 769px) and (max-width: 1025px) {
+  section.section-2 .article-wrapper article:nth-child(1) {
+    grid-column: span 5;
+  }
+  section.section-2 .article-wrapper article:nth-child(2) {
+    grid-column: span 5;
+  }
+  section.section-2 .article-wrapper article:nth-child(3) {
+    grid-column: span 5;
+  }
+  section.section-2 .article-wrapper article:nth-child(4) {
+    grid-column: span 5;
+  }
+}
+@media (max-width: 768px) {
+  section.section-2 .article-wrapper article:nth-child(1) {
+    grid-column: span 10;
+  }
+  section.section-2 .article-wrapper article:nth-child(2) {
+    grid-column: span 10;
+  }
+  section.section-2 .article-wrapper article:nth-child(3) {
+    grid-column: span 10;
+  }
+  section.section-2 .article-wrapper article:nth-child(4) {
+    grid-column: span 10;
+  }
+}
+section.section-2 .article-wrapper article header {
+  margin-bottom: 1em;
+}
+section.section-2 .article-wrapper article header h2 {
+  text-align: left;
+}
+section.section-2 .article-wrapper article header .description {
+  font-size: 65%;
+  color: #3f3f3f;
+}
+section.section-2 .article-wrapper article figure {
+  margin: 0 0 0.7em;
+}
+section.section-2 .article-wrapper article figure img {
+  mix-blend-mode: darken;
+  max-width: 100%;
+}
+section.section-2 .article-wrapper article p {
+  font-size: 65%;
+  margin-bottom: 1em;
+}
+section.section-2 .article-wrapper article .actions {
+  display: flex;
+  justify-content: space-between;
+}
+section.section-2 .article-wrapper article .actions .socials i {
+  color: #737373;
+  margin-right: 0.6em;
+  font-size: 0.6em;
 }
 
 /*# sourceMappingURL=section-2.css.map */

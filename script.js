@@ -3,6 +3,7 @@ const {createApp} = Vue
 createApp({
     data() {
         return {
+            // MAX 4 ARTICLES
             articles: [
                 {
                     title: 'Justice Deferred? Or Defunct?',

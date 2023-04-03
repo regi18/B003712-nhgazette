@@ -21,26 +21,11 @@ section.section-1 {
     }
 
     p {
+      text-align: center;
       margin-bottom: 0.8em;
 
       &:last-child {
         margin-bottom: 0;
-      }
-    }
-
-    .button {
-      cursor: pointer;
-
-      display: inline-block;
-      padding: 8px 15px;
-      border: 2px solid #222;
-      color: #222;
-      font-size: 0.8em;
-      transition: 100ms ease-in-out;
-
-      &:hover {
-        background-color: #222;
-        color: #fff;
       }
     }
   }

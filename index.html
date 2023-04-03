@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="dist/second-nav.css">
     <link rel="stylesheet" href="dist/section-1.css">
     <link rel="stylesheet" href="dist/section-2.css">
+    <link rel="stylesheet" href="dist/section-3.css">
+    <link rel="stylesheet" href="dist/section-4.css">
 
     <meta
             name="viewport"
@@ -68,7 +70,7 @@
         </div>
     </nav>
 
-    <header>
+    <header class="main-header">
         <div class="header-wrapper">
             <h1>
                 <a href="https://www.nhgazette.com/">The New Hampshire Gazette</a>
@@ -83,7 +85,7 @@
         <div class="second-nav-wrapper">
             <ul class="secondary-menu">
                 <li class="menu-item">
-                    <a>The fortnightly rant</a>
+                    <a>The Fortnightly Rant</a>
                 </li>
                 <li class="menu-item">
                     <a>The Alleged News®</a>
@@ -116,27 +118,59 @@
             </div>
         </section>
 
-        <section class="section-2">
+        <section class="section-2 without-image">
             <h2>Read the Latest Paper Online<br>–=≈=–</h2>
+
+            <div class="article-wrapper">
+                <article v-for="a of articles">
+                    <header>
+                        <h2>
+                            <a>{{ a.title }}</a>
+                        </h2>
+                        <div class="description">{{ a.description }}</div>
+                    </header>
+
+                    <figure v-if="!!a.imgUrl"><img :src="a.imgUrl" :alt="a.title"></figure>
+
+                    <p>{{ a.p }}</p>
+
+                    <div class="actions">
+                        <a class="button">
+                            Read More
+                        </a>
+
+                        <div class="socials">
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </div>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <section>
-            <article v-for="a of articles">
-                <header>
-                    <h2>
-                        <a>{{ a.title }}</a>
-                    </h2>
-                    <div class="description">{{ a.description }}</div>
-                </header>
+        <section class="section-3 without-image">
+            <h2>Download the Latest Paper</h2>
+            <p class="divider">–=≈=–</p>
 
-                <figure v-if="!!a.imgUrl"><img :src="a.imgUrl" :alt="a.title"></figure>
+            <div class="download-wrapper">
+                <h2>
+                    <a href="">Volume 267, No. 14; March 24, 2023</a>
+                </h2>
+                <div class="content">
+                    <p><strong>March 24, 2023 —</strong> To download this issue of our paper, just click on the image at right.</p>
+                    <img src="http://www.nhgazette.com/wp-content/uploads/2023/03/267_14.png" alt="Gazette Front Page">
+                </div>
+            </div>
+        </section>
 
-                <p>{{ a.p }}</p>
-
-                <a class="button">
-                    Read More
-                </a>
-            </article>
+        <section class="section-4">
+            <div class="wrapper">
+                <h2>Politics on paper since October 7, 1756</h2>
+                <p>
+                    A newspaper, a third cousin five times removed,<br>
+                    a freelance insurgency. <a href="">Watch the video</a>.
+                </p>
+            </div>
         </section>
     </main>
 

@@ -10,8 +10,12 @@ body, button, input, select, textarea {
   font-size: 22px;
 }
 
-h1, h3, p {
+h1, h2, h3 {
   text-align: center;
+  margin: 0;
+}
+
+p {
   margin: 0;
 }
 
@@ -20,17 +24,17 @@ a, a:hover, a:focus, a:active {
   color: inherit;
 }
 
-header {
+header.main-header {
   background: #fff;
 }
-header .header-wrapper {
+header.main-header .header-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   padding: 30px 40px 25px 40px;
 }
-header .header-wrapper h1 {
+header.main-header .header-wrapper h1 {
   font-size: 55px;
   margin: 0;
   line-height: 1.2em;
@@ -38,11 +42,40 @@ header .header-wrapper h1 {
   font-weight: 700;
   color: #222222;
 }
-header .header-wrapper p {
+header.main-header .header-wrapper p {
   margin: 0;
   line-height: 1.5;
   font-weight: 400;
   font-size: 15px;
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  padding: 8px 15px;
+  border: 2px solid #222;
+  color: #222;
+  font-size: 0.8em;
+  transition: 100ms ease-in-out;
+}
+.button:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+section.without-image {
+  margin: 0 auto;
+  padding: 40px 35px;
+  max-width: 960px;
+}
+section.without-image h2 {
+  font-size: 30px;
+  line-height: 1.2em;
+  font-weight: 300;
+}
+section.without-image > h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

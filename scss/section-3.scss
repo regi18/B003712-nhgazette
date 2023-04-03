@@ -1,0 +1,23 @@
+section.section-3 {
+  p.divider {
+    text-align: center;
+  }
+
+
+  .download-wrapper {
+
+    h2 {
+      text-align: left;
+      margin-bottom: 1em;
+    }
+
+
+    .content {
+      display: flex;
+
+      p {
+        font-size: 80%;
+      }
+    }
+  }
+}
