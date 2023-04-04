@@ -1,3 +1,5 @@
+@import "responsive";
+
 section.section-3 {
   p.divider {
     text-align: center;
@@ -5,15 +7,28 @@ section.section-3 {
 
 
   .download-wrapper {
-
     h2 {
       text-align: left;
       margin-bottom: 1em;
-    }
 
+      @media (max-width: 550px) {
+        text-align: center;
+      }
+    }
 
     .content {
       display: flex;
+
+      @media (max-width: 550px) {
+        margin: auto;
+        max-width: 350px;
+        flex-direction: column;
+
+        p {
+          margin-top: 0.5em;
+          order: 2;
+        }
+      }
 
       p {
         font-size: 80%;

@@ -1,3 +1,18 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 section.section-3 p.divider {
   text-align: center;
 }
@@ -5,8 +20,24 @@ section.section-3 .download-wrapper h2 {
   text-align: left;
   margin-bottom: 1em;
 }
+@media (max-width: 550px) {
+  section.section-3 .download-wrapper h2 {
+    text-align: center;
+  }
+}
 section.section-3 .download-wrapper .content {
   display: flex;
+}
+@media (max-width: 550px) {
+  section.section-3 .download-wrapper .content {
+    margin: auto;
+    max-width: 350px;
+    flex-direction: column;
+  }
+  section.section-3 .download-wrapper .content p {
+    margin-top: 0.5em;
+    order: 2;
+  }
 }
 section.section-3 .download-wrapper .content p {
   font-size: 80%;

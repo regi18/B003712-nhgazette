@@ -43,6 +43,11 @@ section.black-bar-section .wrapper h2 {
   margin-bottom: 20px;
   font-weight: 300;
 }
+@media (max-width: 768px) {
+  section.black-bar-section .wrapper h2 {
+    font-size: 25px !important;
+  }
+}
 section.black-bar-section .wrapper p {
   text-align: center;
 }

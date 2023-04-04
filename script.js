@@ -112,36 +112,43 @@ createApp({
         initSwipe() {
             const el = this.$refs.carousel;
 
-            el.addEventListener('mousedown', (e) => {
-                this.isSwiping = true;
-                el.classList.add('no-transition');
-                this.baseSwipeOffset = el.offsetLeft - e.clientX;
-            }, true);
+            el.addEventListener('mousedown', this.handleMouseDown, true);
+            document.addEventListener('mouseup', this.handleMouseUp, true);
+            document.addEventListener('mousemove', this.handleMouseMove, true);
 
-            document.addEventListener('mouseup', () => {
-                this.isSwiping = false;
-                el.classList.remove('no-transition');
+            el.addEventListener('touchstart', this.handleMouseDown, true);
+            document.addEventListener('touchend', this.handleMouseUp, true);
+            document.addEventListener('touchcancel', this.handleMouseUp, true);
+            document.addEventListener('touchmove', this.handleMouseMove, true);
+        },
+        handleMouseDown(e) {
+            const el = this.$refs.carousel;
+            this.isSwiping = true;
+            el.classList.add('no-transition');
+            this.baseSwipeOffset = el.offsetLeft - e.clientX;
+        },
+        handleMouseUp() {
+            const el = this.$refs.carousel;
+            this.isSwiping = false;
+            el.classList.remove('no-transition');
 
-                const limit = 180;
-                console.log(this.baseSwipeOffset, this.swipeOffset);
+            const limit = 180;
 
-                if (this.swipeOffset > limit) this.resetSwipe(-1);
-                else if (this.swipeOffset < -limit) this.resetSwipe(1);
-                else if (this.swipeOffset < limit) this.resetSwipe(0);
-                else if (this.swipeOffset > -limit) this.resetSwipe(0);
-            }, true);
-
-            document.addEventListener('mousemove', (event) => {
+            if (this.swipeOffset > limit) this.resetSwipe(-1);
+            else if (this.swipeOffset < -limit) this.resetSwipe(1);
+            else if (this.swipeOffset < limit) this.resetSwipe(0);
+            else if (this.swipeOffset > -limit) this.resetSwipe(0);
+        },
+        handleMouseMove(event) {
+            if (this.isSwiping) {
                 event.preventDefault();
-                if (this.isSwiping) {
-                    const o = event.clientX + this.baseSwipeOffset;
+                const o = event.clientX + this.baseSwipeOffset;
 
-                    if (this.activeCarouselIndex === 0 && o > 0) return;
-                    if (this.activeCarouselIndex === this.numOfDots - 1 && o < 0) return;
+                if (this.activeCarouselIndex === 0 && o > 0) return;
+                if (this.activeCarouselIndex === this.numOfDots - 1 && o < 0) return;
 
-                    this.swipeOffset = o;
-                }
-            }, true);
+                this.swipeOffset = o;
+            }
         },
         resetSwipe(addToCarouselIndex = 0) {
             this.baseSwipeOffset = 0;
