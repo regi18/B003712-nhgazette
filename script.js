@@ -114,31 +114,30 @@ createApp({
             return `transform: translateX(calc(${p}% + ${this.swipeOffset}px));`;
         },
         initSwipe() {
-            const el = this.$refs.carousel;
+            this.$refs.carousel.childNodes.forEach((child) => {
+                child.addEventListener('mousedown', this.handleMouseDown, true);
+                child.addEventListener('touchstart', (e) => this.handleMouseDown(e, true), true);
+            });
 
-            el.addEventListener('mousedown', this.handleMouseDown, true);
             document.addEventListener('mouseup', this.handleMouseUp, true);
             document.addEventListener('mousemove', this.handleMouseMove, true);
 
-            el.addEventListener('touchstart', (e) => this.handleMouseDown(e, true), true);
             document.addEventListener('touchend', this.handleMouseUp, true);
             document.addEventListener('touchcancel', this.handleMouseUp, true);
             document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), { passive: false });
         },
         handleMouseDown(e, isTouch = false) {
-            const el = this.$refs.carousel;
             this.isSwiping = true;
-            el.classList.add('no-transition');
+            this.$refs.carousel.classList.add('no-transition');
 
-            if (isTouch) this.baseSwipeOffset = el.offsetLeft - e.touches[0].clientX;
-            else this.baseSwipeOffset = el.offsetLeft - e.clientX;
+            if (isTouch) this.baseSwipeOffset = e.target.offsetLeft - e.touches[0].clientX;
+            else this.baseSwipeOffset = e.target.offsetLeft - e.clientX;
         },
         handleMouseUp() {
-            const el = this.$refs.carousel;
             this.isSwiping = false;
-            el.classList.remove('no-transition');
+            this.$refs.carousel.classList.remove('no-transition');
 
-            const limit = 180;
+            const limit = 150;
 
             if (this.swipeOffset > limit) this.resetSwipe(-1);
             else if (this.swipeOffset < -limit) this.resetSwipe(1);

@@ -21,13 +21,13 @@ section.section-7 .carousel .carousel-track {
   display: flex;
   position: relative;
   max-width: 985px;
-  height: 300px;
+  min-height: 300px;
   overflow: hidden;
   margin-bottom: 2em;
 }
 @media (max-width: 768px) {
   section.section-7 .carousel .carousel-track {
-    height: 250px;
+    margin-bottom: 0.5em;
   }
 }
 section.section-7 .carousel .carousel-track .carousel-card {
@@ -45,6 +45,7 @@ section.section-7 .carousel .carousel-track .carousel-card {
 @media (max-width: 768px) {
   section.section-7 .carousel .carousel-track .carousel-card {
     width: 100%;
+    padding: 0 0.3em;
   }
 }
 section.section-7 .carousel .carousel-track .carousel-card h2 {
@@ -53,6 +54,12 @@ section.section-7 .carousel .carousel-track .carousel-card h2 {
 section.section-7 .carousel .carousel-track .carousel-card p {
   font-size: 65%;
   margin-bottom: 1em;
+  max-height: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
 }
 section.section-7 .carousel .carousel-track.no-transition .carousel-card {
   transition: none;
