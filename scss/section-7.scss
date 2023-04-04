@@ -16,6 +16,10 @@ section.section-7 {
       overflow: hidden;
       margin-bottom: 2em;
 
+      @include mobile {
+        height: 250px;
+      }
+
       .carousel-card {
         padding: 0 1em;
         box-sizing: border-box;
@@ -52,8 +56,9 @@ section.section-7 {
       .dot-wrapper {
         display: flex;
         height: 1.5em;
+        width: 1em;
         align-items: center;
-        margin: 0 0.6em;
+        margin: 0 0.3em;
         cursor: pointer;
 
         &:hover .dot {

@@ -80,6 +80,9 @@ createApp({
             ],
         }
     },
+    created() {
+        this.isDisclaimerOpen = window.localStorage.getItem('isShowDisclaimer') === null;
+    },
     mounted() {
         this.setScreenSize();
         window.addEventListener('scroll', this.handleScroll);
@@ -94,7 +97,8 @@ createApp({
             const btn = this.$refs.scrollToTopBtn;
             if (document.body.scrollTop > minScroll || document.documentElement.scrollTop > minScroll) {
                 btn.classList.add('show');
-            } else {
+            }
+            else {
                 btn.classList.remove('show');
             }
         },
@@ -116,16 +120,18 @@ createApp({
             document.addEventListener('mouseup', this.handleMouseUp, true);
             document.addEventListener('mousemove', this.handleMouseMove, true);
 
-            el.addEventListener('touchstart', this.handleMouseDown, true);
+            el.addEventListener('touchstart', (e) => this.handleMouseDown(e, true), true);
             document.addEventListener('touchend', this.handleMouseUp, true);
             document.addEventListener('touchcancel', this.handleMouseUp, true);
-            document.addEventListener('touchmove', this.handleMouseMove, true);
+            document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), true);
         },
-        handleMouseDown(e) {
+        handleMouseDown(e, isTouch = false) {
             const el = this.$refs.carousel;
             this.isSwiping = true;
             el.classList.add('no-transition');
-            this.baseSwipeOffset = el.offsetLeft - e.clientX;
+
+            if (isTouch) this.baseSwipeOffset = el.offsetLeft - e.touches[0].clientX;
+            else this.baseSwipeOffset = el.offsetLeft - e.clientX;
         },
         handleMouseUp() {
             const el = this.$refs.carousel;
@@ -139,10 +145,15 @@ createApp({
             else if (this.swipeOffset < limit) this.resetSwipe(0);
             else if (this.swipeOffset > -limit) this.resetSwipe(0);
         },
-        handleMouseMove(event) {
+        handleMouseMove(event, isTouch = false) {
             if (this.isSwiping) {
-                event.preventDefault();
-                const o = event.clientX + this.baseSwipeOffset;
+                let o;
+                if (isTouch) {
+                    o = event.touches[0].clientX + this.baseSwipeOffset;
+                } else {
+                    event.preventDefault();
+                    o = event.clientX + this.baseSwipeOffset;
+                }
 
                 if (this.activeCarouselIndex === 0 && o > 0) return;
                 if (this.activeCarouselIndex === this.numOfDots - 1 && o < 0) return;
@@ -165,11 +176,18 @@ createApp({
             if (this.currentSize === 'desktop') return 3;
             else if (this.currentSize === 'tablet') return 2;
             else if (this.currentSize === 'mobile') return 1;
+            else return 3;
         }
     },
     watch: {
         isDisclaimerOpen() {
-            this.$nextTick(() => { this.initSwipe(); })
+            if (!this.isDisclaimerOpen) {
+                this.$nextTick(() => {
+                    this.initSwipe();
+                })
+
+                window.localStorage.setItem('isShowDisclaimer', this.isDisclaimerOpen);
+            }
         }
     }
 }).mount('#app')

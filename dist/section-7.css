@@ -25,6 +25,11 @@ section.section-7 .carousel .carousel-track {
   overflow: hidden;
   margin-bottom: 2em;
 }
+@media (max-width: 768px) {
+  section.section-7 .carousel .carousel-track {
+    height: 250px;
+  }
+}
 section.section-7 .carousel .carousel-track .carousel-card {
   padding: 0 1em;
   box-sizing: border-box;
@@ -59,8 +64,9 @@ section.section-7 .carousel .carousel-dots {
 section.section-7 .carousel .carousel-dots .dot-wrapper {
   display: flex;
   height: 1.5em;
+  width: 1em;
   align-items: center;
-  margin: 0 0.6em;
+  margin: 0 0.3em;
   cursor: pointer;
 }
 section.section-7 .carousel .carousel-dots .dot-wrapper:hover .dot {
