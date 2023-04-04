@@ -90,7 +90,7 @@ createApp({
     },
     methods: {
         setScreenSize() {
-            this.currentSize = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
+            this.currentSize = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/"/g, '');
         },
         handleScroll() {
             const minScroll = 280;
@@ -123,7 +123,7 @@ createApp({
             el.addEventListener('touchstart', (e) => this.handleMouseDown(e, true), true);
             document.addEventListener('touchend', this.handleMouseUp, true);
             document.addEventListener('touchcancel', this.handleMouseUp, true);
-            document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), true);
+            document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), { passive: false });
         },
         handleMouseDown(e, isTouch = false) {
             const el = this.$refs.carousel;
@@ -147,11 +147,12 @@ createApp({
         },
         handleMouseMove(event, isTouch = false) {
             if (this.isSwiping) {
+                event.preventDefault();
                 let o;
                 if (isTouch) {
                     o = event.touches[0].clientX + this.baseSwipeOffset;
-                } else {
-                    event.preventDefault();
+                }
+                else {
                     o = event.clientX + this.baseSwipeOffset;
                 }
 
