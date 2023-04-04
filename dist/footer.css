@@ -1,3 +1,18 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 footer .footer-content {
   padding: 60px 40px 20px 40px;
   background-size: 100% auto !important;

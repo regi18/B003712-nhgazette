@@ -6,6 +6,11 @@ createApp({
             isMobileMenuOpen: false,
             isMobileSecondMenuOpen: false,
             isDisclaimerOpen: true,
+            activeCarouselIndex: 0,
+            currentSize: null,
+            swipeOffset: 0,
+            baseSwipeOffset: 0,
+            isSwiping: false,
             // MAX 4 ARTICLES
             articles: [
                 {
@@ -31,19 +36,65 @@ createApp({
                     p: 'by Roy Morrison Merrimack Station, the coal fired power plant on the banks of the Merrimack River in Bow, New Hampshire, has recently passed its fiftieth anniversary. It’s New England’s last remaining coal plant. It’s also N.H.’s largest point source of carbon pollution. The plant…',
                 }
             ],
+            carouselCards: [
+                {
+                    title: 'Mon, Apr 3',
+                    p: '2014—Sen. Jerry Moran [R-Kan.], whose top contributor is Koch Industries, reads into the Congressional Record a Wall Street Journal op-ed in which Charles Koch defends his right to spend millions…'
+                },
+                {
+                    title: 'Sun, Apr 2',
+                    p: '2014—In McCutcheon v. FEC, the Supreme Court rules that rich folks deserve to have more influence in elections than the unwashed proletariat. 1982—U.S. Ambassador to the U.N. Jeanne Kirkpatrick dines…'
+                },
+                {
+                    title: 'Sat, Apr 1',
+                    p: '2013—In Portsmouth Harbor, the tanker Harbour Feature allides with the Sarah Mildred Long Bridge. 2004—Britain declassifies “Blue Peacock,” a 1957 plan to bury nukes in Germany with live chickens keeping…'
+                },
+                {
+                    title: 'Fri, Mar 31',
+                    p: '2016—Darcie Rae Hall, 36, of Troy, N.H., is arrested in Keene for selling “Donald Trump” brand heroin. 2004—Four American contractors are ambushed and killed in Fallujah, their bodies displayed from…'
+                },
+                {
+                    title: 'Thurs, Mar 30',
+                    p: '2016—School bus mechanics in Virginia discover plastic explosives inadvertently left behind by the CIA. 2008—As he throws out the first pitch at Washington’s new National Park, George W.[MD] Bush is…'
+                },
+                {
+                    title: 'Wed, Mar 29',
+                    p: '2003—Newsweek publishes a poll saying 74 percent of Americans believe that the Bush administration has “a well thought-out military plan.” 1995—Rep. Dan Burton [R-Ind.] says the U.S. “should place an…'
+                },
+                {
+                    title: 'Tue, Mar 28',
+                    p: '2013—In Portsmouth Harbor, the tanker Harbour Feature allides with the Sarah Mildred Long Bridge. 2004—Britain declassifies “Blue Peacock,” a 1957 plan to bury nukes in Germany with live chickens keeping…'
+                },
+                {
+                    title: 'Mon, Mar 27',
+                    p: '2016—Darcie Rae Hall, 36, of Troy, N.H., is arrested in Keene for selling “Donald Trump” brand heroin. 2004—Four American contractors are ambushed and killed in Fallujah, their bodies displayed from…'
+                },
+                {
+                    title: 'Sun, Mar 26',
+                    p: '2016—School bus mechanics in Virginia discover plastic explosives inadvertently left behind by the CIA. 2008—As he throws out the first pitch at Washington’s new National Park, George W.[MD] Bush is…'
+                },
+                {
+                    title: 'Sat, Mar 25',
+                    p: '2003—Newsweek publishes a poll saying 74 percent of Americans believe that the Bush administration has “a well thought-out military plan.” 1995—Rep. Dan Burton [R-Ind.] says the U.S. “should place an…'
+                },
+            ],
         }
     },
     mounted() {
+        this.setScreenSize();
         window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener("resize", this.setScreenSize);
     },
     methods: {
+        setScreenSize() {
+            this.currentSize = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
+        },
         handleScroll() {
             const minScroll = 280;
             const btn = this.$refs.scrollToTopBtn;
             if (document.body.scrollTop > minScroll || document.documentElement.scrollTop > minScroll) {
                 btn.classList.add('show');
-            }
-            else {
+            } else {
                 btn.classList.remove('show');
             }
         },
@@ -52,6 +103,66 @@ createApp({
                 top: 0,
                 behavior: "smooth"
             });
+        },
+        getStyle(i) {
+            const p = ((i + (this.activeCarouselIndex * -this.carouselCardsPerSlide)) * 100);
+
+            return `transform: translateX(calc(${p}% + ${this.swipeOffset}px));`;
+        },
+        initSwipe() {
+            const el = this.$refs.carousel;
+
+            el.addEventListener('mousedown', (e) => {
+                this.isSwiping = true;
+                el.classList.add('no-transition');
+                this.baseSwipeOffset = el.offsetLeft - e.clientX;
+            }, true);
+
+            document.addEventListener('mouseup', () => {
+                this.isSwiping = false;
+                el.classList.remove('no-transition');
+
+                const limit = 180;
+                console.log(this.baseSwipeOffset, this.swipeOffset);
+
+                if (this.swipeOffset > limit) this.resetSwipe(-1);
+                else if (this.swipeOffset < -limit) this.resetSwipe(1);
+                else if (this.swipeOffset < limit) this.resetSwipe(0);
+                else if (this.swipeOffset > -limit) this.resetSwipe(0);
+            }, true);
+
+            document.addEventListener('mousemove', (event) => {
+                event.preventDefault();
+                if (this.isSwiping) {
+                    const o = event.clientX + this.baseSwipeOffset;
+
+                    if (this.activeCarouselIndex === 0 && o > 0) return;
+                    if (this.activeCarouselIndex === this.numOfDots - 1 && o < 0) return;
+
+                    this.swipeOffset = o;
+                }
+            }, true);
+        },
+        resetSwipe(addToCarouselIndex = 0) {
+            this.baseSwipeOffset = 0;
+            this.isSwiping = false;
+            this.swipeOffset = 0;
+            this.activeCarouselIndex += addToCarouselIndex;
         }
     },
+    computed: {
+        numOfDots() {
+            return Math.ceil(this.carouselCards.length / this.carouselCardsPerSlide);
+        },
+        carouselCardsPerSlide() {
+            if (this.currentSize === 'desktop') return 3;
+            else if (this.currentSize === 'tablet') return 2;
+            else if (this.currentSize === 'mobile') return 1;
+        }
+    },
+    watch: {
+        isDisclaimerOpen() {
+            this.$nextTick(() => { this.initSwipe(); })
+        }
+    }
 }).mount('#app')

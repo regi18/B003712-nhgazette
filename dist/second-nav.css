@@ -1,3 +1,18 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 .second-nav {
   width: 100%;
 }

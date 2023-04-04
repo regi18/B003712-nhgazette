@@ -10,6 +10,10 @@ section.section-3 .download-wrapper .content {
 }
 section.section-3 .download-wrapper .content p {
   font-size: 80%;
+  margin-right: 1em;
+}
+section.section-3 .download-wrapper .content img {
+  mix-blend-mode: darken;
 }
 
 /*# sourceMappingURL=section-3.css.map */

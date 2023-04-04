@@ -1,5 +1,81 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 section.section-7 p.subtitle {
   text-align: center;
+  margin-bottom: 1.5em;
+}
+section.section-7 .carousel .carousel-track {
+  display: flex;
+  position: relative;
+  max-width: 985px;
+  height: 300px;
+  overflow: hidden;
+  margin-bottom: 2em;
+}
+section.section-7 .carousel .carousel-track .carousel-card {
+  padding: 0 1em;
+  box-sizing: border-box;
+  position: absolute;
+  width: 33.33333%;
+  transition: 500ms;
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  section.section-7 .carousel .carousel-track .carousel-card {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  section.section-7 .carousel .carousel-track .carousel-card {
+    width: 100%;
+  }
+}
+section.section-7 .carousel .carousel-track .carousel-card h2 {
+  margin-bottom: 1em;
+}
+section.section-7 .carousel .carousel-track .carousel-card p {
+  font-size: 65%;
+  margin-bottom: 1em;
+}
+section.section-7 .carousel .carousel-track.no-transition .carousel-card {
+  transition: none;
+}
+section.section-7 .carousel .carousel-dots {
+  display: flex;
+  justify-content: center;
+}
+section.section-7 .carousel .carousel-dots .dot-wrapper {
+  display: flex;
+  height: 1.5em;
+  align-items: center;
+  margin: 0 0.6em;
+  cursor: pointer;
+}
+section.section-7 .carousel .carousel-dots .dot-wrapper:hover .dot {
+  background-color: #000;
+}
+section.section-7 .carousel .carousel-dots .dot-wrapper .dot {
+  height: 5px;
+  width: 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: 100ms;
+}
+section.section-7 .carousel .carousel-dots .dot-wrapper .dot.active {
+  background-color: #000;
 }
 
 /*# sourceMappingURL=section-7.css.map */

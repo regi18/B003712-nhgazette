@@ -1,3 +1,18 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 body {
   background-color: #f5f5f5;
   color: #3a3a3a;
@@ -105,26 +120,6 @@ header.main-header .header-wrapper p {
 .button:hover {
   background-color: #222;
   color: #fff;
-}
-
-section.without-image, section > div.spacing-wrapper {
-  margin: 0 auto;
-  padding: 40px 35px;
-  max-width: 960px;
-}
-section.without-image h2, section > div.spacing-wrapper h2 {
-  font-size: 30px;
-  line-height: 1.2em;
-  font-weight: 300;
-}
-@media (max-width: 768px) {
-  section.without-image h2, section > div.spacing-wrapper h2 {
-    font-size: 25px;
-  }
-}
-section.without-image > h2, section > div.spacing-wrapper > h2 {
-  text-align: center;
-  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -259,7 +259,27 @@
                     <a href="https://www.nhgazette.com/page-eight/">read more</a>.
                 </p>
 
-                <div style="background: red">TODO CAROUSEL</div>
+                <div class="carousel">
+                    <div class="carousel-track" id="carousel" ref="carousel">
+                        <template v-for="(c, i) in carouselCards">
+                            <div class="carousel-card" :style="getStyle(i)">
+                                <h2>{{ c.title }}</h2>
+                                <p>{{ c.p }}</p>
+                                <a class="button">Read more</a>
+                            </div>
+                        </template>
+                    </div>
+
+                    <div class="carousel-dots">
+                        <span
+                                class="dot-wrapper"
+                                v-for="(_, d) in numOfDots"
+                                @click="activeCarouselIndex = d"
+                        >
+                            <span class="dot" :class="{ 'active': d === activeCarouselIndex }"></span>
+                        </span>
+                    </div>
+                </div>
             </section>
         </main>
 

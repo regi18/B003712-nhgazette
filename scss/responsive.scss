@@ -20,3 +20,15 @@ $desktop-breakpoint: 1025px;
     @content;
   }
 }
+
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+
+  @include tablet {
+    content: "tablet";
+  }
+  @include mobile {
+    content: "mobile";
+  }
+}
