@@ -18,7 +18,7 @@ section.section-1 {
 }
 section.section-1 .wrapper {
   padding: 55px 35px;
-  background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.05), rgba(51, 51, 51, 0.05)), url(https://www.nhgazette.com/wp-content/uploads/2020/04/nhgazette-hero.jpg);
+  background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.05), rgba(51, 51, 51, 0.05)), url("/resources/img/nhgazette-hero.jpg");
   background-size: cover;
 }
 @media (max-width: 768px) {
