@@ -20,7 +20,8 @@ section.without-image, section > div.spacing-wrapper {
 }
 @media (max-width: 768px) {
   section.without-image, section > div.spacing-wrapper {
-    padding: 40px 30px;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 }
 section.without-image h2, section > div.spacing-wrapper h2 {
@@ -43,6 +44,12 @@ section.black-bar-section .wrapper {
   padding: 40px 35px;
   color: #fff;
   max-width: 985px;
+}
+@media (max-width: 768px) {
+  section.black-bar-section .wrapper {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
 }
 section.black-bar-section .wrapper h2 {
   margin-bottom: 20px;

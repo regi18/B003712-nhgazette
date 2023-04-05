@@ -6,7 +6,8 @@ section.without-image, section > div.spacing-wrapper {
   max-width: 985px;
 
   @include mobile {
-    padding: 40px 30px;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
   }
 
   h2 {
@@ -31,6 +32,11 @@ section.black-bar-section {
     padding: 40px 35px;
     color: #fff;
     max-width: 985px;
+
+    @include mobile {
+      padding-left: 30px !important;
+      padding-right: 30px !important;
+    }
 
     h2 {
       margin-bottom: 20px;

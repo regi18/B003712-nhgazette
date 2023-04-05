@@ -1,3 +1,18 @@
+body:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  body:before {
+    content: "tablet";
+  }
+}
+@media (max-width: 768px) {
+  body:before {
+    content: "mobile";
+  }
+}
+
 section.section-1 {
   border-bottom: 20px solid #303030;
 }
@@ -5,6 +20,11 @@ section.section-1 .wrapper {
   padding: 55px 35px;
   background-image: linear-gradient(0deg, rgba(51, 51, 51, 0.05), rgba(51, 51, 51, 0.05)), url(https://www.nhgazette.com/wp-content/uploads/2020/04/nhgazette-hero.jpg);
   background-size: cover;
+}
+@media (max-width: 768px) {
+  section.section-1 .wrapper {
+    padding: 55px 30px;
+  }
 }
 section.section-1 .wrapper h1 {
   font-weight: bold;
