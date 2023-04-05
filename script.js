@@ -22,7 +22,10 @@ createApp({
         // Fetch articles (only last 4)
         fetch('./resources/articles.json').then((response) => response.json()).then(e => this.articles = e.slice(0, 4));
         // Fetch carousel cards
-        fetch('./resources/carouselCards.json').then((response) => response.json()).then(e => this.carouselCards = e);
+        fetch('./resources/carouselCards.json').then((response) => response.json()).then(e => {
+            this.carouselCards = e;
+            this.initSwipe();
+        });
     },
     mounted() {
         this.setScreenSize();
@@ -59,7 +62,9 @@ createApp({
             return `transform: translateX(calc(${p}% + ${this.swipeOffset}px));`;
         },
         // Init the events needed by the carousel for swipe gestures
-        initSwipe() {
+        async initSwipe() {
+            await this.$nextTick();
+
             this.$refs.carousel.childNodes.forEach((child) => {
                 child.addEventListener('mousedown', this.handleMouseDown, true);
                 child.addEventListener('touchstart', (e) => this.handleMouseDown(e, true), true);
@@ -146,10 +151,7 @@ createApp({
     watch: {
         isDisclaimerOpen() {
             if (!this.isDisclaimerOpen) {
-                this.$nextTick(() => {
-                    this.initSwipe();
-                })
-
+                this.initSwipe();
                 window.localStorage.setItem('isShowDisclaimer', this.isDisclaimerOpen);
             }
         }
