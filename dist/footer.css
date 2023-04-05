@@ -16,7 +16,7 @@ body:before {
 footer .footer-content {
   padding: 60px 40px 20px 40px;
   background-size: 100% auto !important;
-  background: #d6d6d6 url(/resources/img/tide-web.png) repeat-x top;
+  background: #d6d6d6 url(../resources/img/tide-web.png) repeat-x top;
 }
 footer .footer-content .footer-content-wrapper {
   display: flex;
