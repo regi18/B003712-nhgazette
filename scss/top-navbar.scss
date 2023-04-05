@@ -23,18 +23,23 @@
         list-style: none;
         padding: 0;
         background-color: #4f4f4f;
-        width: 200px;
 
-        position: absolute;
-        left: -99999px;
-        opacity: 0;
-        z-index: 99999;
-        top: auto;
-        transition: opacity 80ms linear;
-        transition-delay: 0s;
-        pointer-events: none;
-        height: 0;
-        overflow: hidden;
+        @media (min-width: #{$mobile-breakpoint + 1}) {
+          width: 200px;
+          position: absolute;
+          left: -99999px;
+          opacity: 0;
+          z-index: 99999;
+          top: auto;
+          transition: opacity 80ms linear;
+          transition-delay: 0s;
+          pointer-events: none;
+          height: 0;
+          overflow: hidden;
+        }
+        @include mobile {
+          display: none;
+        }
 
         li.sub-menu-item a {
           background-color: #3f3f3f;
@@ -74,6 +79,13 @@
           }
         }
 
+        @include mobile {
+          ul.sub-menu.is-open {
+            display: block;
+          }
+        }
+
+        // Show sub-menu on hover
         &:hover {
           a {
             color: #ffffff;
@@ -114,7 +126,7 @@
 
     .top-nav-wrapper {
       &:not(.is-open-mobile) {
-          display: none;
+        display: none;
       }
 
       justify-content: flex-start;

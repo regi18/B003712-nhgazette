@@ -78,10 +78,16 @@
                     </li>
                     <li class="menu-item with-sub-menu">
                         <a href="">
-                            The Bush/Nazi Stories <i class="fas fa-angle-down arrow-down"></i>
+                            The Bush/Nazi Stories
+                            <i
+                                ref="topNavSubMenuArrow"
+                                class="fas fa-angle-down arrow-down"
+                                @click="$event.preventDefault(); openSubMenu()"
+                            >
+                            </i>
                         </a>
 
-                        <ul class="sub-menu">
+                        <ul class="sub-menu" ref="topNavSubMenu">
                             <li class="sub-menu-item">
                                 <a href="">Bush/Nazi Link Confirmed</a>
                             </li>

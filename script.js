@@ -123,6 +123,11 @@ createApp({
             this.isSwiping = false;
             this.swipeOffset = 0;
             this.activeCarouselIndex += addToCarouselIndex;
+        },
+        openSubMenu() {
+            this.$refs.topNavSubMenu.classList.toggle('is-open');
+            this.$refs.topNavSubMenuArrow.classList.toggle('fa-angle-down');
+            this.$refs.topNavSubMenuArrow.classList.toggle('fa-angle-up');
         }
     },
     computed: {
