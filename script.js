@@ -5,83 +5,24 @@ createApp({
         return {
             isMobileMenuOpen: false,
             isMobileSecondMenuOpen: false,
-            isDisclaimerOpen: true,
+            isDisclaimerOpen: false,
             activeCarouselIndex: 0,
             currentSize: null,
             swipeOffset: 0,
             baseSwipeOffset: 0,
             isSwiping: false,
-            // MAX 4 ARTICLES
-            articles: [
-                {
-                    title: 'Justice Deferred? Or Defunct?',
-                    description: 'March 10, 2023 | The Fortnightly Rant',
-                    imgUrl: 'https://www.nhgazette.com/wp-content/uploads/2023/03/Waiting-for-Garland-655x465.jpg',
-                    p: 'Watching Vladimir and Estragon on a nearly bare stage as they wait for Godot can, paradoxically, be a thrilling experience. Waiting for Merrick Garland to slap the cuffs on The Former Guy, on the other hand, is beginning to get tedious. Talk about pent-up demand. If Ticketmaster could sell seats to a DJT Perp Walk, its ensuing collapse would make last year’s Taylor Swift fiasco look like business as usual. And yet, we wait…and wait…. What—a seething nation might ask, boiling over in exasperation, had…',
-                },
-                {
-                    title: 'A Brief Dispatch Regarding the Impending Coronation',
-                    description: 'March 10, 2023 | The Alleged News®',
-                    imgUrl: 'https://www.nhgazette.com/wp-content/uploads/2023/03/Black-History-275x202.jpg',
-                    p: 'The U.S. and the U.K., said George Bernard Shaw, are two nations separated by a common language. Further distinguishing us from our former colonial master is our form of government—though GOP opposition to monarchy seems increasingly squishy. Our editorial position on monarchy was most recently published on February 10th, with a selection from Thomas Paine’s, Common Sense; herewith, a more succinct version: Britain’s first king was “nothing better than the principal ruffian of some restless…',
-                },
-                {
-                    title: 'Snowflake Culture',
-                    description: 'February 11, 2023 | The Northcountry Chronicle',
-                    p: 'by W.D. Ehrhart I have been writing poetry ever since I was 15 years old. My first published work appeared in 1971 when I was 22 years old. Since then, I’ve published over 400 poems. Along the way, I’ve probably received as many as 4,000…',
-                },
-                {
-                    title: 'Merrimack Station: A Fifty Year N.H. Disaster Continues',
-                    description: 'February 11, 2023 | Mash Notes, Hate Mail & Other Correspondence',
-                    p: 'by Roy Morrison Merrimack Station, the coal fired power plant on the banks of the Merrimack River in Bow, New Hampshire, has recently passed its fiftieth anniversary. It’s New England’s last remaining coal plant. It’s also N.H.’s largest point source of carbon pollution. The plant…',
-                }
-            ],
-            carouselCards: [
-                {
-                    title: 'Mon, Apr 3',
-                    p: '2014—Sen. Jerry Moran [R-Kan.], whose top contributor is Koch Industries, reads into the Congressional Record a Wall Street Journal op-ed in which Charles Koch defends his right to spend millions…'
-                },
-                {
-                    title: 'Sun, Apr 2',
-                    p: '2014—In McCutcheon v. FEC, the Supreme Court rules that rich folks deserve to have more influence in elections than the unwashed proletariat. 1982—U.S. Ambassador to the U.N. Jeanne Kirkpatrick dines…'
-                },
-                {
-                    title: 'Sat, Apr 1',
-                    p: '2013—In Portsmouth Harbor, the tanker Harbour Feature allides with the Sarah Mildred Long Bridge. 2004—Britain declassifies “Blue Peacock,” a 1957 plan to bury nukes in Germany with live chickens keeping…'
-                },
-                {
-                    title: 'Fri, Mar 31',
-                    p: '2016—Darcie Rae Hall, 36, of Troy, N.H., is arrested in Keene for selling “Donald Trump” brand heroin. 2004—Four American contractors are ambushed and killed in Fallujah, their bodies displayed from…'
-                },
-                {
-                    title: 'Thurs, Mar 30',
-                    p: '2016—School bus mechanics in Virginia discover plastic explosives inadvertently left behind by the CIA. 2008—As he throws out the first pitch at Washington’s new National Park, George W.[MD] Bush is…'
-                },
-                {
-                    title: 'Wed, Mar 29',
-                    p: '2003—Newsweek publishes a poll saying 74 percent of Americans believe that the Bush administration has “a well thought-out military plan.” 1995—Rep. Dan Burton [R-Ind.] says the U.S. “should place an…'
-                },
-                {
-                    title: 'Tue, Mar 28',
-                    p: '2013—In Portsmouth Harbor, the tanker Harbour Feature allides with the Sarah Mildred Long Bridge. 2004—Britain declassifies “Blue Peacock,” a 1957 plan to bury nukes in Germany with live chickens keeping…'
-                },
-                {
-                    title: 'Mon, Mar 27',
-                    p: '2016—Darcie Rae Hall, 36, of Troy, N.H., is arrested in Keene for selling “Donald Trump” brand heroin. 2004—Four American contractors are ambushed and killed in Fallujah, their bodies displayed from…'
-                },
-                {
-                    title: 'Sun, Mar 26',
-                    p: '2016—School bus mechanics in Virginia discover plastic explosives inadvertently left behind by the CIA. 2008—As he throws out the first pitch at Washington’s new National Park, George W.[MD] Bush is…'
-                },
-                {
-                    title: 'Sat, Mar 25',
-                    p: '2003—Newsweek publishes a poll saying 74 percent of Americans believe that the Bush administration has “a well thought-out military plan.” 1995—Rep. Dan Burton [R-Ind.] says the U.S. “should place an…'
-                },
-            ],
+            articles: [],
+            carouselCards: [],
         }
     },
     created() {
+        // Set disclaimer status
         this.isDisclaimerOpen = window.localStorage.getItem('isShowDisclaimer') === null;
+
+        // Fetch articles (only last 4)
+        fetch('./resources/articles.json').then((response) => response.json()).then(e => this.articles = e.slice(0, 4));
+        // Fetch carousel cards
+        fetch('./resources/carouselCards.json').then((response) => response.json()).then(e => this.carouselCards = e);
     },
     mounted() {
         this.setScreenSize();
@@ -89,9 +30,11 @@ createApp({
         window.addEventListener("resize", this.setScreenSize);
     },
     methods: {
+        // Set a variable on body:before that signals the screen size
         setScreenSize() {
             this.currentSize = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/"/g, '');
         },
+        // Show/Hide the "scroll to top" button
         handleScroll() {
             const minScroll = 280;
             const btn = this.$refs.scrollToTopBtn;
@@ -102,17 +45,20 @@ createApp({
                 btn.classList.remove('show');
             }
         },
+        // Scroll to top
         scrollToTop() {
             window.scrollTo({
                 top: 0,
                 behavior: "smooth"
             });
         },
+        // Style for a carousel card (x translation)
         getStyle(i) {
             const p = ((i + (this.activeCarouselIndex * -this.carouselCardsPerSlide)) * 100);
 
             return `transform: translateX(calc(${p}% + ${this.swipeOffset}px));`;
         },
+        // Init the events needed by the carousel for swipe gestures
         initSwipe() {
             this.$refs.carousel.childNodes.forEach((child) => {
                 child.addEventListener('mousedown', this.handleMouseDown, true);
@@ -124,8 +70,9 @@ createApp({
 
             document.addEventListener('touchend', this.handleMouseUp, true);
             document.addEventListener('touchcancel', this.handleMouseUp, true);
-            document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), { passive: false });
+            document.addEventListener('touchmove', (e) => this.handleMouseMove(e, true), {passive: false});
         },
+        // Set starting point of swipe gesture
         handleMouseDown(e, isTouch = false) {
             this.isSwiping = true;
             this.$refs.carousel.classList.add('no-transition');
@@ -133,20 +80,28 @@ createApp({
             if (isTouch) this.baseSwipeOffset = e.target.offsetLeft - e.touches[0].clientX;
             else this.baseSwipeOffset = e.target.offsetLeft - e.clientX;
         },
+        // Handle end of swipe gesture
         handleMouseUp() {
             this.isSwiping = false;
+            // Remove transition for smooth swiping
             this.$refs.carousel.classList.remove('no-transition');
 
+            // The minimum that you have to swipe to change slide
             const limit = 150;
 
+            // Check if the swipe was enough to change slide
             if (this.swipeOffset > limit) this.resetSwipe(-1);
             else if (this.swipeOffset < -limit) this.resetSwipe(1);
+            // Otherwise reset the values (this achieves the "snap back"\"bounce" effect)
             else if (this.swipeOffset < limit) this.resetSwipe(0);
             else if (this.swipeOffset > -limit) this.resetSwipe(0);
         },
+        // Track mouse/finger movement during swipe gesture
         handleMouseMove(event, isTouch = false) {
             if (this.isSwiping) {
+                // Prevent scroll while swiping in the carousel
                 event.preventDefault();
+                // Get mouse/finger position
                 let o;
                 if (isTouch) {
                     o = event.touches[0].clientX + this.baseSwipeOffset;
@@ -155,12 +110,14 @@ createApp({
                     o = event.clientX + this.baseSwipeOffset;
                 }
 
+                // Disable swipe if swiping left at first slide or swiping right at last slide
                 if (this.activeCarouselIndex === 0 && o > 0) return;
                 if (this.activeCarouselIndex === this.numOfDots - 1 && o < 0) return;
 
                 this.swipeOffset = o;
             }
         },
+        // Reset swiping values
         resetSwipe(addToCarouselIndex = 0) {
             this.baseSwipeOffset = 0;
             this.isSwiping = false;
@@ -169,9 +126,11 @@ createApp({
         }
     },
     computed: {
+        // Number of slides in the carousel
         numOfDots() {
             return Math.ceil(this.carouselCards.length / this.carouselCardsPerSlide);
         },
+        // Make the carousel responsive
         carouselCardsPerSlide() {
             if (this.currentSize === 'desktop') return 3;
             else if (this.currentSize === 'tablet') return 2;

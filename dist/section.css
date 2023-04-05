@@ -18,6 +18,11 @@ section.without-image, section > div.spacing-wrapper {
   padding: 40px 35px;
   max-width: 985px;
 }
+@media (max-width: 768px) {
+  section.without-image, section > div.spacing-wrapper {
+    padding: 40px 30px;
+  }
+}
 section.without-image h2, section > div.spacing-wrapper h2 {
   font-size: 30px;
   line-height: 1.2em;

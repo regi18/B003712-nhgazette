@@ -5,6 +5,10 @@ section.without-image, section > div.spacing-wrapper {
   padding: 40px 35px;
   max-width: 985px;
 
+  @include mobile {
+    padding: 40px 30px;
+  }
+
   h2 {
     font-size: 30px;
     line-height: 1.2em;
