@@ -27,7 +27,8 @@ footer .footer-content .footer-content-wrapper {
 }
 footer .footer-content .footer-content-wrapper .widget {
   flex: 1;
-  flex-basis: calc(50% - 2em);
+  flex-basis: calc(50vw - 2em - 40px);
+  min-width: 200px;
 }
 @media (min-width: 1026px) {
   footer .footer-content .footer-content-wrapper .widget {
